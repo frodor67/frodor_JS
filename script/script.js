@@ -38,8 +38,6 @@ if (money > 0) {
 
   console.log('Бюджет на день: ' + budgetDay);
 
-  console.log(typeof (budgetDay));
-
   // if (budgetDay >= 1200) {
   //   console.log('У вас высокий уровень дохода');
   // } else if (budgetDay < 1200) {
