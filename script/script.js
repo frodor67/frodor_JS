@@ -9,7 +9,7 @@ let money,
       do {
         money = prompt('Ваш месячный доход?');
       }
-      while (!isNumber(money));
+      while (!isNumber(money) || money == 0);
 };
 
 start();
@@ -31,36 +31,46 @@ let appData = {
         let addExpenses = prompt('Перечислите возможные расходы за расчитываемый период через запятую');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
-  },
-  getExpensesMonth: function () {  
-        let sum = 0;
-        let sumAsk;
+        
         for (let i = 0; i < 2; i++) {
-          
-          appData.expenses[i] = prompt('Введите обязательную статью расходов?');
-          
-          console.log(appData.expenses);
-          
+
+          let ask = prompt('Введите обязательную статью расходов?'),
+              sumAsk = 0;
           do {
             sumAsk = prompt('Во сколько это обойдется?');
           } while (!isNumber(sumAsk));
-          sum += +sumAsk;
-          
-          console.log(sum);
-          
+
+          appData.expenses[ask] = sumAsk;
           
         }
-        console.log('Ваши расходы в месяц составляют: ' + sum);
-        return sum;
+
+        console.log(appData.expenses);
   },
-  getAccumulatedMonth: function (money) {
-                      return money - appData.expensesMonth;
+  getExpensesMonth: function () {  
+    let sum = 0;
+    for ( let prop in appData.expenses)  {
+      sum += +appData.expenses[prop];
+    } 
+
+    console.log('Ваши расходы в месяц составляют: ' + sum);
+
+    return appData.expensesMonth = sum;
+
   },
-  getTargetMonth: function (mission) {
-        if (appData.accumulatedMonth <= 0) {
+  getBudget: function () {
+
+        appData.budgetMonth = appData.budget - appData.expensesMonth;
+
+        appData.budgetDay = Math.floor(appData.budgetMonth / 30);
+
+        return appData.budgetMonth, appData.budgetDay;
+
+  },
+  getTargetMonth: function () {
+        if (appData.budgetMonth <= 0) {
           return console.log('При нулевом дневном бюджете цель не будет достигнута');      
         } else {
-          return console.log(`Цель будет достигнута за ${Math.ceil(mission / appData.accumulatedMonth)} месяцев(-а)`);
+          return console.log(`Цель будет достигнута за ${Math.ceil(appData.mission / appData.budgetMonth)} месяцев(-а)`);
         }
   },
   getStatusIncome: function () {  
@@ -78,23 +88,38 @@ let appData = {
   
 };
 
+
+let getProp = function () {
+  console.log('Наша программа включает в себя данные:');
+  for (let prop in appData) {
+    console.log(prop + ':' + appData[prop]);
+  }
+
+};
+
+
+
 appData.asking();
+appData.getExpensesMonth();
+appData.getBudget();
+appData.getTargetMonth();
+console.log(appData.getStatusIncome());
+getProp();
 
 
-console.log('Период равен ' + appData.period + ' месяцев');
-console.log('Цель заработать ' + appData.mission + ' рублей');
+// console.log('Период равен ' + appData.period + ' месяцев');
+// console.log('Цель заработать ' + appData.mission + ' рублей');
 
-appData.expensesMonth = appData.getExpensesMonth();
+// appData.expensesMonth = +appData.getExpensesMonth();
 
-appData.accumulatedMonth = +appData.getAccumulatedMonth(money);
+// appData.accumulatedMonth = +appData.getAccumulatedMonth(money);
 
-appData.budgetDay = Math.floor(appData.accumulatedMonth / 30);
+// appData.budgetDay = Math.floor(appData.accumulatedMonth / 30);
 
-console.log('Бюджет на день: ' + appData.budgetDay);
+// console.log('Бюджет на день: ' + appData.budgetDay);
 
-if (money > 0) {
-  appData.getTargetMonth(appData.mission);
-  console.log(appData.getStatusIncome());
-} else {
-  console.log('Доход не может быть равен 0');
-}
+
+ 
+
+
+
