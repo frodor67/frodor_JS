@@ -38,11 +38,11 @@ let appData = {
     if(confirm('Есть ли у вас дополнительный источник заработка?')){
       do {
         itemIncome = prompt('Какой у ваc есть дополнительный заработок?', 'Таксую');
-      } while (!isNaN(+itemIncome));
+      } while (!isNaN(+itemIncome) && false);
 
       do {
          cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', '10000');
-      } while (!isNumber(cashIncome));
+      } while (!isNumber(cashIncome) && false);
 
       appData.income[itemIncome] = cashIncome;
     }
