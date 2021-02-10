@@ -1,28 +1,34 @@
 'use strict';
 
-const calc = document.getElementById('start');
-const btnAdd1 = document.getElementsByTagName('button')[0];
-const btnAdd2 = document.getElementsByTagName('button')[1];
-const chkBox = document.querySelector('#deposit-check');
-const val = document.getElementsByClassName('result-total');
-const budget = document.querySelector('.salary-amount');
-const itemIncome = document.querySelector('.income-title');
-const cashIncome = document.querySelector('.income-amount');
-const addIncome = document.querySelector('.additional_income-item');
-const itemExpenses = document.querySelector('.expenses-title');
-const cashExpenses = document.querySelector('.expenses-amount');
-const addExpenses = document.querySelector('.additional_expenses-item');
-const chkDep = document.querySelector('#deposit-check');
-const cashDep = document.querySelector('.deposit-amount');
-const percentDep = document.querySelector('.deposit-percent');
-const mission = document.querySelector('.target-amount');
-const period = document.querySelector('.period-select');
+const calc           = document.getElementById('start'),
+      btnAdd1        = document.getElementsByTagName('button')[0],
+      btnAdd2        = document.getElementsByTagName('button')[1],
+      chkBox         = document.querySelector('#deposit-check'),
+      valBudMonth    = document.getElementsByClassName('budget_month-value'),
+      valBudDay      = document.getElementsByClassName('budget_day-value'),
+      valExpMonth    = document.getElementsByClassName('expenses_month-value'),
+      valAddIncome   = document.getElementsByClassName('additional_income-value'),
+      valAddExpenses = document.getElementsByClassName('additional_expenses-value'),
+      valIncPeriod   = document.getElementsByClassName('income_period-value'),
+      valTargMonth   = document.getElementsByClassName('target_month-value'),
+      budget         = document.querySelector('.salary-amount'),
+      itemIncome     = document.querySelector('.income-title'),
+      cashIncome     = document.querySelector('.income-amount'),
+      addIncome      = document.querySelector('.additional_income-item'),
+      itemExpenses   = document.querySelector('.expenses-title'),
+      cashExpenses   = document.querySelector('.expenses-amount'),
+      addExpenses    = document.querySelector('.additional_expenses-item'),
+      chkDep         = document.querySelector('#deposit-check'),
+      cashDep        = document.querySelector('.deposit-amount'),
+      percentDep     = document.querySelector('.deposit-percent'),
+      mission        = document.querySelector('.target-amount'),
+      period         = document.querySelector('.period-select');
 
 
 
 
 
-console.log(calc, btnAdd1, btnAdd2, chkBox, val, budget, itemIncome, cashIncome, addIncome, itemExpenses, cashExpenses, addExpenses, chkDep, cashDep, percentDep, mission, period );
+console.log(calc, btnAdd1, btnAdd2, chkBox, val, budget, itemIncome, cashIncome, addIncome, itemExpenses, cashExpenses, addExpenses, chkDep, cashDep, percentDep, mission, period);
 
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
