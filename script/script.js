@@ -4,7 +4,7 @@ const calc = document.getElementById('start');
 const btnAdd1 = document.getElementsByTagName('button')[0];
 const btnAdd2 = document.getElementsByTagName('button')[1];
 const chkBox = document.querySelector('#deposit-check');
-const val = document.getElementsByClassName('result-total');
+const val = document.getElementsByClassName('value');
 const budget = document.querySelector('.salary-amount');
 const itemIncome = document.querySelector('.income-title');
 const cashIncome = document.querySelector('.income-amount');
@@ -22,7 +22,7 @@ const period = document.querySelector('.period-select');
 
 
 
-console.log(calc, btnAdd1, btnAdd2, chkBox, val, budget, itemIncome, cashIncome, addIncome, itemExpenses, cashExpenses, addExpenses, chkDep, cashDep, percentDep, mission, period );
+//console.log(calc, btnAdd1, btnAdd2, chkBox, val, budget, itemIncome, cashIncome, addIncome, itemExpenses, cashExpenses, addExpenses, chkDep, cashDep, percentDep, mission, period );
 
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
