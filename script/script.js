@@ -195,17 +195,21 @@ let appData = {
 };
 
 
+const chekSalAm = function () {
 
-start.addEventListener('click', function () {
   if (salaryAmount.value === '') {
-    start.setAttribute('disabled', true);
-    return;
-  } appData.start();
-});
+    document.querySelector('.income_period-value').value = '';
+    start.addEventListener('click', chekSalAm);
+  } else {     
+    appData.start();
+  }
+};  
+
+start.addEventListener('click',chekSalAm);  
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('change', appData.getRange);
+periodSelect.addEventListener('input', appData.getRange);
 
 
 
