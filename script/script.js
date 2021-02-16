@@ -27,7 +27,9 @@ let   start           = document.getElementById('start'),
       inputs          = document.getElementsByTagName('input'),
       inputText       = document.querySelectorAll('input[type=text]'),
       data            = document.querySelector('.data'),
-      result          = document.querySelector('.result');
+      result          = document.querySelector('.result'),
+      
+      resultInputText = result.querySelectorAll('.result-total');
 
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -35,6 +37,11 @@ let isNumber = function(n) {
 
 let isString = function (s) {
   return isNaN(s);
+};
+
+const findInput = function () {
+  const dataInputText = data.querySelectorAll('input[type=text]');
+  return dataInputText;
 };
 
 let appData = {
@@ -176,6 +183,7 @@ let appData = {
 
 
 const chekSalAm = function () {
+  
 
   if (salaryAmount.value === '') {
     document.querySelector('.income_period-value').value = '';
@@ -184,32 +192,50 @@ const chekSalAm = function () {
     appData.start();
     start.style.display = 'none';
     cancel.style.display = 'block'; 
+    
+    let inputs = findInput();
 
-    for (let i = 0; i < inputText.length; i++) {
-      inputText[i].setAttribute('disabled', 'disabled');      
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].setAttribute('disabled', 'disabled');      
     }    
   }
 };
 
 const reset = function () {
-  let dataInputText   = data.querySelectorAll('input[type=text]'),
-      resultInputText = result.querySelectorAll('.result-total');
   
-  for (let i = 0; i < dataInputText.length; i++) {
-      dataInputText[i].removeAttribute('disabled');
-      dataInputText[i].value = '';     
+  let inputs = findInput();
+
+  for (let i = 0; i < inputs.length; i++) {
+      inputs[i].removeAttribute('disabled');
+      inputs[i].value = '';     
     }
   for (let i = 0; i < resultInputText.length; i++) {
       resultInputText[i].value = '';     
     }
-  periodSelect.value = 1;
-  periodAmount.textContent = 1;
-  start.style.display = 'block';
-  cancel.style.display = 'none';
-    
+
+  const checkbox = document.querySelector('input[type=checkbox]');
+  checkbox.checked = false;
   
+  periodAmount.textContent = 1;
+  document.querySelector('.period-select').value = 1;
+
+  for (let i = 1; i < incomeItems.length; i++) {
+    incomeItems[i].remove();    
+  }
+  for (let i = 1; i < expensesItems.length; i++) {
+    expensesItems[i].remove();
+    
+  }  
+  incomePlus.style.display = 'block';  
+  expensesPlus.style.display = 'block';
+  
+  start.style.display = 'block';
+  cancel.style.display = 'none'; 
+
   
 };
+
+
 
 start.addEventListener('click', chekSalAm);  
 cancel.addEventListener('click', reset);  
@@ -217,4 +243,3 @@ cancel.addEventListener('click', reset);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.getRange);
-
